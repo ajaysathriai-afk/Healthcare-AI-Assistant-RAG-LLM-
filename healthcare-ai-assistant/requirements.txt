@@ -1,7 +1,1 @@
 pytest
-# add other minimal packages for CI; you can expand later:
-# fastapi
-# uvicorn
-# numpy
-# sentence-transformers
-# faiss-cpu
