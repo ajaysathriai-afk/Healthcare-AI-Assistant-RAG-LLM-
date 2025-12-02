@@ -20,26 +20,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-
-          # CASE 1 — requirements.txt in repo root
-          if [ -f requirements.txt ]; then
-            echo "Found ROOT requirements.txt"
-            pip install -r requirements.txt
-
-          # CASE 2 — requirements inside the folder healthcare-ai-assistant/
-          elif [ -f healthcare-ai-assistant/requirements.txt ]; then
-            echo "Found SUBFOLDER requirements.txt"
-            pip install -r healthcare-ai-assistant/requirements.txt
-
-          # CASE 3 — no requirements found anywhere
-          else
-            echo "No requirements found — installing minimal pytest"
-            pip install pytest
-          fi
-
-          # ensure pytest is available
+          pip install -r requirements.txt
           pip install pytest
 
       - name: Run fast tests
+        working-directory: healthcare-ai-assistant
         run: |
           pytest -q -m "not slow"
