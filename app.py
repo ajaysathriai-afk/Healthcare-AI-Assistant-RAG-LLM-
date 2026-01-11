@@ -318,7 +318,7 @@ st.markdown(
     }
     
     /* Hide Streamlit elements */
-    #MainMenu, footer, header {
+    #MainMenu, footer {
         visibility: hidden;
     }
     
