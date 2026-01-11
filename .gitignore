@@ -3,7 +3,12 @@ __pycache__/
 venv/
 .env
 .env.*
-data/
+# Ignore all data (embeddings, indexes etc)
+data/*
+
+# BUT keep docs folder tracked (so Render can ingest)
+!data/docs/
+!data/docs/**
 *.faiss
 *.index
 *.csv
