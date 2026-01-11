@@ -13,7 +13,9 @@ import json
 
 # ---------------- CONFIG ----------------
 API_URL = "https://healthcare-ai-assistant-rag-llm.onrender.com/ask_llm"
-STREAM_API_URL = "https://healthcare-ai-assistant-rag-llm.onrender.com/ask_llm_stream"  # streaming endpoint
+STREAM_API_URL = "https://healthcare-ai-assistant-rag-llm.onrender.com/ask_llm_stream"
+
+
 CHAT_WIDTH = 780
 DEFAULT_TOP_K = 3
 ASSETS_BG_PATH = "assets/bg.jpg"
@@ -666,3 +668,4 @@ else:
         text = last_assistant.get("text", "")
         sources = normalize_sources(last_assistant.get("sources", []))
         render_final_answer(text, sources, answer_placeholder, sources_placeholder)
+
