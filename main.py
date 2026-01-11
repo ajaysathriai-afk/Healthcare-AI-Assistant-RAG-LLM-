@@ -30,6 +30,14 @@ if not API_KEY:
 
 # ================= APP =================
 app = FastAPI()
+@app.get("/")
+def root():
+    return {"status": "ok", "message": "Healthcare AI Assistant API is running"}
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
 
 app.add_middleware(
     CORSMiddleware,
