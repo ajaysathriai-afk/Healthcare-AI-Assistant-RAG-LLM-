@@ -12,7 +12,7 @@ import shutil
 import json
 
 # ---------------- CONFIG ----------------
-API_URL = "http://127.0.0.1:8000/ask_llm"                # non-stream (fallback, unused here)
+API_URL = "https://healthcare-ai-assistant-rag-llm.onrender.com/ask_llm"
 STREAM_API_URL = "http://127.0.0.1:8000/ask_llm_stream"  # streaming endpoint
 CHAT_WIDTH = 780
 DEFAULT_TOP_K = 3
