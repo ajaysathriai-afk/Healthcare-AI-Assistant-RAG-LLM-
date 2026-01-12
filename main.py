@@ -1,4 +1,4 @@
-# main.py — FastAPI backend for Healthcare RAG (PATCHED & STABLE)
+# main.py — FastAPI backend for Healthcare RAG (STRICT RAG MODE)
 
 import os
 import json
@@ -28,11 +28,27 @@ API_KEY = os.getenv("OPENAI_API_KEY")
 if not API_KEY:
     raise RuntimeError("OPENAI_API_KEY not found — set it in your env")
 
+# ================= STRICT RAG SETTINGS =================
+STRICT_RAG = True
+
+# If retrieved context is too small, treat as "no context"
+MIN_CONTEXT_CHARS = 250
+MIN_DOCS = 1
+
+STRICT_RAG_FALLBACK_MSG = (
+    "I don't have enough information in my knowledge base to answer this safely.\n\n"
+    "✅ Try asking using a topic present in the uploaded medical documents, "
+    "or add more documents to expand coverage."
+)
+
 # ================= APP =================
 app = FastAPI()
+
+
 @app.get("/")
 def root():
     return {"status": "ok", "message": "Healthcare AI Assistant API is running"}
+
 
 @app.get("/health")
 def health():
@@ -77,6 +93,11 @@ def search(query: str, k: int = 3) -> List[Dict[str, Any]]:
     if faiss_index is None or not metadata:
         return []
 
+    # Safety: keep k bounded
+    if k is None:
+        k = 3
+    k = max(1, min(int(k), 10))
+
     q_emb = embed_model.encode([query]).astype("float32")
     _, indices = faiss_index.search(q_emb, k)
 
@@ -87,16 +108,51 @@ def search(query: str, k: int = 3) -> List[Dict[str, Any]]:
 
     return docs
 
+
+def build_context(docs: List[Dict[str, Any]]) -> str:
+    # Join retrieved chunks
+    return "\n\n".join(d.get("text", "") for d in docs if d.get("text"))
+
+
+def has_sufficient_context(docs: List[Dict[str, Any]]) -> bool:
+    if not docs or len(docs) < MIN_DOCS:
+        return False
+    ctx = build_context(docs)
+    if len(ctx.strip()) < MIN_CONTEXT_CHARS:
+        return False
+    return True
+
 # ================= PROMPT =================
 def build_prompt(question: str, retrieved_docs: List[Dict[str, Any]]) -> str:
-    context = "\n\n".join(d["text"] for d in retrieved_docs)
+    context = build_context(retrieved_docs)
 
+    if STRICT_RAG:
+        # STRICT MODE: MUST NOT use general medical knowledge
+        return f"""
+You are a medical assistant that MUST answer ONLY using the given context.
+
+RULES (STRICT):
+- Use ONLY the context to answer.
+- If the context does not contain enough information, respond exactly with:
+  "I don't know based on the provided documents."
+- Do NOT use general knowledge.
+- Do NOT guess.
+- Keep answer short and clear.
+
+Context:
+{context}
+
+Question: {question}
+
+Answer:
+""".strip()
+
+    # Non-strict mode (not recommended)
     return f"""
 You are a helpful medical assistant.
 
 Use the context below if it helps.
 If the context is weak or incomplete, answer normally using your medical knowledge.
-Do NOT say "I don't know" unless the question is completely unclear.
 
 Context:
 {context}
@@ -105,7 +161,6 @@ Question: {question}
 
 Answer in a clear, natural paragraph:
 """.strip()
-
 
 # ================= OPENAI =================
 def call_llm(prompt: str) -> str:
@@ -128,19 +183,41 @@ class AskRequest(BaseModel):
     question: str
     top_k: int = 3
 
+
 @app.post("/ask_llm")
 def ask(req: AskRequest):
     docs = search(req.question, req.top_k)
+
+    # STRICT RAG: block answering if no/weak context
+    if STRICT_RAG and not has_sufficient_context(docs):
+        return {
+            "answer": STRICT_RAG_FALLBACK_MSG,
+            "sources": [],
+        }
+
     answer = call_llm(build_prompt(req.question, docs))
+    sources = sorted(set(d.get("source", "unknown") for d in docs))
 
     return {
         "answer": answer,
-        "sources": sorted(set(d.get("source", "unknown") for d in docs)),
+        "sources": sources,
     }
+
 
 @app.post("/ask_llm_stream")
 async def ask_stream(req: AskRequest):
     docs = search(req.question, req.top_k)
+
+    # STRICT RAG: streaming fallback immediately
+    if STRICT_RAG and not has_sufficient_context(docs):
+        def fallback_stream():
+            yield json.dumps({"type": "sources", "sources": []}) + "\n"
+            for part in STRICT_RAG_FALLBACK_MSG.split():
+                yield json.dumps({"type": "token", "token": part + " "}) + "\n"
+            yield json.dumps({"type": "done"}) + "\n"
+
+        return StreamingResponse(fallback_stream(), media_type="application/jsonl")
+
     prompt = build_prompt(req.question, docs)
 
     def stream():
@@ -197,3 +274,4 @@ def startup():
         print(f"[FAISS ERROR] {e}")
         faiss_index = None
         metadata = []
+
