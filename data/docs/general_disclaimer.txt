@@ -1,0 +1,12 @@
+Title: Medical Disclaimer
+
+This assistant provides general health information for educational purposes only.
+
+It is NOT a substitute for:
+- Doctor consultation
+- Diagnosis
+- Emergency treatment
+
+If you have severe symptoms, worsening condition, chest pain, breathing difficulty, confusion, seizures, or any emergency:
+Seek medical help immediately.
+
