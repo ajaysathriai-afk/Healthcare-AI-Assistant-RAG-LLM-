@@ -12,8 +12,8 @@ import shutil
 import json
 
 # ---------------- CONFIG ----------------
-API_URL = "https://healthcare-ai-assistant-rag-llm.onrender.com/ask_llm"
-STREAM_API_URL = "https://healthcare-ai-assistant-rag-llm.onrender.com/ask_llm_stream"
+API_URL = "https://healthcare-ai-assistant-docker.onrender.com/ask_llm"
+STREAM_API_URL = "https://healthcare-ai-assistant-docker.onrender.com/ask_llm_stream"
 
 
 CHAT_WIDTH = 780
