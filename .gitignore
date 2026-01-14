@@ -5,7 +5,9 @@ venv/
 .env.*
 # Ignore all data (embeddings, indexes etc)
 data/*
-
+# ignore FAISS generated files
+data/embeddings_faiss/
+data/embeddings_faiss/**
 # BUT keep docs folder tracked (so Render can ingest)
 !data/docs/
 !data/docs/**
@@ -15,4 +17,7 @@ data/*
 *.jsonl
 .DS_Store
 .vscode/
+assets/screenshots/
+*.png
+*.jpg
 
