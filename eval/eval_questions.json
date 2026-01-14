@@ -1,0 +1,83 @@
+[
+  {
+    "question": "What are common symptoms of diabetes?",
+    "expected_sources": ["data/docs/diabetes.txt"]
+  },
+  {
+    "question": "What are symptoms of hypertension?",
+    "expected_sources": ["data/docs/hypertension.txt"]
+  },
+  {
+    "question": "What are symptoms of dengue?",
+    "expected_sources": ["data/docs/dengue.txt"]
+  },
+  {
+    "question": "What are symptoms of typhoid?",
+    "expected_sources": ["data/docs/typhoid.txt"]
+  },
+  {
+    "question": "What are symptoms of malaria?",
+    "expected_sources": ["data/docs/malaria.txt"]
+  },
+  {
+    "question": "How to treat acidity / GERD at home?",
+    "expected_sources": ["data/docs/acidity_gerd.txt"]
+  },
+  {
+    "question": "Home remedies for cough?",
+    "expected_sources": ["data/docs/cough.txt"]
+  },
+  {
+    "question": "What to do for sore throat?",
+    "expected_sources": ["data/docs/sore_throat.txt"]
+  },
+  {
+    "question": "What are headache causes and basic relief?",
+    "expected_sources": ["data/docs/headache.txt"]
+  },
+  {
+    "question": "What should I do in food poisoning?",
+    "expected_sources": ["data/docs/food_poisoning.txt"]
+  },
+  {
+    "question": "What are symptoms of UTI?",
+    "expected_sources": ["data/docs/uti.txt"]
+  },
+  {
+    "question": "Kidney stone symptoms?",
+    "expected_sources": ["data/docs/kidney_stones.txt"]
+  },
+  {
+    "question": "What are anemia symptoms?",
+    "expected_sources": ["data/docs/anemia.txt"]
+  },
+  {
+    "question": "Asthma symptoms?",
+    "expected_sources": ["data/docs/asthma.txt"]
+  },
+  {
+    "question": "What should I do for vomiting?",
+    "expected_sources": ["data/docs/vomiting.txt"]
+  },
+  {
+    "question": "What should I do for diarrhea?",
+    "expected_sources": ["data/docs/diarrhea.txt"]
+  },
+  {
+    "question": "Emergency red flags: when should someone go to hospital?",
+    "expected_sources": ["data/docs/emergency_red_flags.txt"]
+  },
+  {
+    "question": "Chest pain warning signs?",
+    "expected_sources": ["data/docs/chest_pain.txt"]
+  },
+  {
+    "question": "First aid steps for bleeding and wounds?",
+    "expected_sources": ["data/docs/first_aid.txt"]
+  },
+  {
+    "question": "Pregnancy medication safety basics?",
+    "expected_sources": ["data/docs/pregnancy_safety.txt"]
+  }
+]
+

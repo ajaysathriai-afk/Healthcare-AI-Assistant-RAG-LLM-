@@ -1,0 +1,322 @@
+[
+  {
+    "question": "What are common symptoms of diabetes?",
+    "answer_preview": "Common symptoms of diabetes include increased thirst, frequent urination, fatigue, and blurred vision.",
+    "sources": [
+      "data/docs/diabetes.txt",
+      "data/docs/headache.txt",
+      "data/docs/hypertension.txt"
+    ],
+    "expected_sources": [
+      "data/docs/diabetes.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What are symptoms of hypertension?",
+    "answer_preview": "Symptoms (severe): headache, dizziness, vision issues.",
+    "sources": [
+      "data/docs/heart_health.txt",
+      "data/docs/hypertension.txt",
+      "data/docs/thyroid.txt"
+    ],
+    "expected_sources": [
+      "data/docs/hypertension.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What are symptoms of dengue?",
+    "answer_preview": "- High fever   - Severe body/joint pain (\u201cbreakbone fever\u201d)   - Headache, eye pain   - Rash   - Fatigue",
+    "sources": [
+      "data/docs/dengue.txt",
+      "data/docs/headache.txt",
+      "data/docs/malaria.txt"
+    ],
+    "expected_sources": [
+      "data/docs/dengue.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What are symptoms of typhoid?",
+    "answer_preview": "- Prolonged fever - Weakness - Abdominal pain - Constipation or diarrhea - Loss of appetite",
+    "sources": [
+      "data/docs/headache.txt",
+      "data/docs/thyroid.txt",
+      "data/docs/typhoid.txt"
+    ],
+    "expected_sources": [
+      "data/docs/typhoid.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What are symptoms of malaria?",
+    "answer_preview": "- Fever with chills and sweating   - Body aches   - Headache   - Weakness",
+    "sources": [
+      "data/docs/dengue.txt",
+      "data/docs/headache.txt",
+      "data/docs/malaria.txt"
+    ],
+    "expected_sources": [
+      "data/docs/malaria.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "How to treat acidity / GERD at home?",
+    "answer_preview": "- Eat smaller meals   - Avoid lying down 2\u20133 hours after eating   - Raise head of bed   - Reduce spicy/fatty foods   - W",
+    "sources": [
+      "data/docs/acidity_gerd.txt",
+      "data/docs/first_aid.txt",
+      "data/docs/vomiting.txt"
+    ],
+    "expected_sources": [
+      "data/docs/acidity_gerd.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "Home remedies for cough?",
+    "answer_preview": "- Warm fluids, honey (not for children <1 year)   - Steam inhalation   - Gargling warm salt water   - Avoid smoke/dust  ",
+    "sources": [
+      "data/docs/cold.txt",
+      "data/docs/cough.txt",
+      "data/docs/sore_throat.txt"
+    ],
+    "expected_sources": [
+      "data/docs/cough.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What to do for sore throat?",
+    "answer_preview": "- Warm salt water gargles   - Warm fluids   - Adequate rest   - Humidifier",
+    "sources": [
+      "data/docs/cold.txt",
+      "data/docs/cough.txt",
+      "data/docs/sore_throat.txt"
+    ],
+    "expected_sources": [
+      "data/docs/sore_throat.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What are headache causes and basic relief?",
+    "answer_preview": "Causes of headaches include stress, dehydration, poor sleep, and triggers like lack of sleep, excess caffeine, and long ",
+    "sources": [
+      "data/docs/headache.txt",
+      "data/docs/malaria.txt",
+      "data/docs/mental_health_basics.txt"
+    ],
+    "expected_sources": [
+      "data/docs/headache.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What should I do in food poisoning?",
+    "answer_preview": "For food poisoning, you should hydrate with ORS, rest, and avoid oily foods.",
+    "sources": [
+      "data/docs/food_poisoning.txt",
+      "data/docs/typhoid.txt",
+      "data/docs/vomiting.txt"
+    ],
+    "expected_sources": [
+      "data/docs/food_poisoning.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What are symptoms of UTI?",
+    "answer_preview": "- Burning while urinating - Frequent urination - Lower abdominal pain - Cloudy urine - Fever (suggests spreading infecti",
+    "sources": [
+      "data/docs/kidney_stones.txt",
+      "data/docs/typhoid.txt",
+      "data/docs/uti.txt"
+    ],
+    "expected_sources": [
+      "data/docs/uti.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "Kidney stone symptoms?",
+    "answer_preview": "Severe side/back pain, pain moving to groin, blood in urine, nausea/vomiting.",
+    "sources": [
+      "data/docs/acidity_gerd.txt",
+      "data/docs/kidney_stones.txt",
+      "data/docs/uti.txt"
+    ],
+    "expected_sources": [
+      "data/docs/kidney_stones.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What are anemia symptoms?",
+    "answer_preview": "Fatigue, pale skin, shortness of breath, dizziness, fast heartbeat.",
+    "sources": [
+      "data/docs/anemia.txt",
+      "data/docs/diabetes.txt",
+      "data/docs/malaria.txt"
+    ],
+    "expected_sources": [
+      "data/docs/anemia.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "Asthma symptoms?",
+    "answer_preview": "- Wheezing - Shortness of breath - Chest tightness - Night cough",
+    "sources": [
+      "data/docs/asthma.txt",
+      "data/docs/cough.txt",
+      "data/docs/heart_health.txt"
+    ],
+    "expected_sources": [
+      "data/docs/asthma.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What should I do for vomiting?",
+    "answer_preview": "- Small sips of water/ORS - Avoid heavy food for some hours - Eat light (banana, rice, toast) - Rest",
+    "sources": [
+      "data/docs/food_poisoning.txt",
+      "data/docs/typhoid.txt",
+      "data/docs/vomiting.txt"
+    ],
+    "expected_sources": [
+      "data/docs/vomiting.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "What should I do for diarrhea?",
+    "answer_preview": "- Use ORS (oral rehydration solution) - Drink clean water and eat light foods - Avoid oily and spicy foods - Continue fe",
+    "sources": [
+      "data/docs/diarrhea.txt",
+      "data/docs/food_poisoning.txt",
+      "data/docs/vomiting.txt"
+    ],
+    "expected_sources": [
+      "data/docs/diarrhea.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "Emergency red flags: when should someone go to hospital?",
+    "answer_preview": "Seek emergency medical help immediately if experiencing severe chest pain, trouble breathing, sudden weakness/numbness o",
+    "sources": [
+      "data/docs/emergency_red_flags.txt",
+      "data/docs/first_aid.txt",
+      "data/docs/general_disclaimer.txt"
+    ],
+    "expected_sources": [
+      "data/docs/emergency_red_flags.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "Chest pain warning signs?",
+    "answer_preview": "- Heavy pressure-like chest pain   - Pain radiating to arm/jaw/back   - Sweating, nausea   - Shortness of breath   - Fee",
+    "sources": [
+      "data/docs/acidity_gerd.txt",
+      "data/docs/chest_pain.txt",
+      "data/docs/heart_health.txt"
+    ],
+    "expected_sources": [
+      "data/docs/chest_pain.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "First aid steps for bleeding and wounds?",
+    "answer_preview": "- Stop bleeding with pressure. - Clean wounds with clean water.",
+    "sources": [
+      "data/docs/emergency_red_flags.txt",
+      "data/docs/first_aid.txt",
+      "data/docs/general_disclaimer.txt"
+    ],
+    "expected_sources": [
+      "data/docs/first_aid.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  },
+  {
+    "question": "Pregnancy medication safety basics?",
+    "answer_preview": "Only a doctor can advise medicines safely in pregnancy.",
+    "sources": [
+      "data/docs/diarrhea.txt",
+      "data/docs/pregnancy_safety.txt",
+      "data/docs/uti.txt"
+    ],
+    "expected_sources": [
+      "data/docs/pregnancy_safety.txt"
+    ],
+    "has_answer": true,
+    "has_sources": true,
+    "matched_expected": 1,
+    "strict_refusal": false
+  }
+]
