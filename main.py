@@ -24,9 +24,9 @@ META_FILE = "meta.jsonl"
 OPENAI_URL = "https://api.openai.com/v1/chat/completions"
 MODEL_NAME = "gpt-4o-mini"
 API_KEY = os.getenv("OPENAI_API_KEY")
-
 if not API_KEY:
-    raise RuntimeError("OPENAI_API_KEY not found — set it in your env")
+    print("⚠️ OPENAI_API_KEY not set. Running in CI / limited mode.")
+
 
 # ================= STRICT RAG SETTINGS =================
 STRICT_RAG = True
@@ -164,6 +164,12 @@ Answer in a clear, natural paragraph:
 
 # ================= OPENAI =================
 def call_llm(prompt: str) -> str:
+    if not API_KEY:
+        raise HTTPException(
+            status_code=500,
+            detail="OPENAI_API_KEY not found. Set it in environment variables."
+        )
+
     headers = {"Authorization": f"Bearer {API_KEY}"}
     payload = {
         "model": MODEL_NAME,
