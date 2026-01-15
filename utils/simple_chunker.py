@@ -1,49 +1,55 @@
-import pandas as pd
-import os
-from nltk.tokenize import sent_tokenize
-import nltk
+# utils/simple_chunker.py
+# Lightweight text chunker (NO NLTK dependency)
 
-nltk.download("punkt", quiet=True)
-
-INPUT="data/raw/medical_faq.csv"
-OUT="data/combined/medical_chunks.csv"
-CHUNK_SENTENCES = 6
+import re
+from typing import List
 
 
-def chunk_text(text: str, chunk_size: int = CHUNK_SENTENCES):
-    sentences = sent_tokenize(text)
+def simple_sentence_split(text: str) -> List[str]:
+    """
+    Very lightweight sentence splitter.
+    Works fine for our docs without needing nltk.
+    """
+    if not text:
+        return []
+    text = re.sub(r"\s+", " ", text).strip()
+    # split on sentence endings
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    return [s.strip() for s in sentences if s.strip()]
+
+
+def chunk_text(text: str, max_chars: int = 900, overlap: int = 150) -> List[str]:
+    """
+    Convert long text into chunks.
+    - max_chars: chunk size
+    - overlap: overlapping characters to preserve context
+    """
+    sentences = simple_sentence_split(text)
+
     chunks = []
-    for i in range(0, len(sentences), chunk_size):
-        c = " ".join(sentences[i : i + chunk_size]).strip()
-        if c:
-            chunks.append(c)
+    buf = ""
+
+    for sent in sentences:
+        if len(buf) + len(sent) + 1 <= max_chars:
+            buf = f"{buf} {sent}".strip()
+        else:
+            if buf:
+                chunks.append(buf)
+            buf = sent
+
+    if buf:
+        chunks.append(buf)
+
+    # add overlap
+    if overlap > 0 and len(chunks) > 1:
+        overlapped = []
+        for i, ch in enumerate(chunks):
+            if i == 0:
+                overlapped.append(ch)
+            else:
+                prev_tail = chunks[i - 1][-overlap:]
+                overlapped.append((prev_tail + " " + ch).strip())
+        chunks = overlapped
+
     return chunks
-
-
-def build_chunks():
-    if not os.path.exists(INPUT):
-        raise FileNotFoundError(f"{INPUT} not found")
-
-    df = pd.read_csv(INPUT)
-    rows = []
-
-    for idx, row in df.iterrows():
-        q = str(row.get("question", "")).strip()
-        a = str(row.get("answer", "")).strip()
-        text = (q + "\n\n" + a).strip()
-
-        for i, chunk in enumerate(chunk_text(text)):
-            rows.append({
-                "id": f"{idx}_c{i}",
-                "text": chunk,
-                "source": row.get("source", "meddata")
-            })
-
-    out_df = pd.DataFrame(rows)
-    out_df.to_csv(OUT, index=False)
-    print(f"✔ Wrote {len(rows)} chunks → {OUT}")
-
-
-if __name__ == "__main__":
-    build_chunks()
 
