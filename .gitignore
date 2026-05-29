@@ -20,4 +20,5 @@ data/embeddings_faiss/**
 assets/screenshots/
 *.png
 *.jpg
-
+.venv/
+node_modules/

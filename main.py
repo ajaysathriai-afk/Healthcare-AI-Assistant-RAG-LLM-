@@ -13,7 +13,8 @@ import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 import requests
-
+from dotenv import load_dotenv
+load_dotenv()
 # ================= CONFIG =================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 EMBED_DIR = os.path.join(BASE_DIR, "data", "embeddings_faiss")
